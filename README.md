@@ -1,77 +1,64 @@
 # ✈️ Personalized AI Travel Planner
 
-An AI-powered travel planning assistant built with **LangChain, LangGraph, and Python**. It generates personalized travel itineraries based on user preferences and supports conversational refinement using AI agents, external search, and memory.
+An AI-powered travel planning assistant built using **Python, LangChain, and LangGraph**. This project explores how LLMs, prompt chaining, AI agents, web search, and conversational memory can work together to generate and refine personalized travel itineraries.
 
 ## 🌍 Overview
 
-Planning a trip often involves researching destinations, exploring attractions, and organizing activities around personal preferences.
+The **Personalized AI Travel Planner** is a mini project developed to explore the practical applications of Generative AI and agentic workflows.
 
-The **Personalized AI Travel Planner** aims to simplify this process using Large Language Models (LLMs), prompt chaining, and AI agents.
+It combines language models with external search tools and memory to help users plan trips based on their destinations and preferences.
 
-Users can provide a destination and travel preferences to generate an itinerary, explore attractions through search, and refine their travel plans through conversation.
-
-This project was developed as a hands-on learning experience to explore the LangChain ecosystem and agentic AI workflows.
+The project also explores LangGraph checkpointing to maintain agent state during conversational interactions.
 
 ## ✨ Features
 
-- 🗺️ **Personalized Itinerary Generation**  
-  Generate travel itineraries based on the destination and user preferences.
-
-- 🔗 **LLM & Prompt Chaining**  
-  Connect prompts and language models to process travel requests through multiple steps.
-
-- ⚙️ **Sequential Processing**  
-  Use sequential chains to organize itinerary generation into connected LLM operations.
-
-- 🤖 **AI Agent Integration**  
-  Use an AI agent to decide when to call external tools for travel research.
-
-- 🔎 **Google Search Integration**  
-  Search for tourist attractions and destination-related information.
-
-- 🧠 **Conversational Memory**  
-  Retain relevant conversation context and user preferences for more personalized interactions.
-
-- 🔄 **LangGraph Checkpointing**  
-  Explore checkpoint-based memory and conversational workflows for maintaining agent state.
+- ✈️ **Personalized Travel Planning:** Generate travel itineraries based on user requests and preferences.
+- 🔗 **Prompt Chaining:** Connect prompts and LLMs to process requests through multiple steps.
+- ⚙️ **Sequential Processing:** Use connected LLM operations to structure itinerary generation.
+- 🤖 **AI Agent:** Use an agent that can decide when to call external search tools.
+- 🔎 **Google Search Integration:** Retrieve travel-related information using SerpAPI.
+- 🧠 **Conversational Memory:** Use `ConversationBufferWindowMemory` to retain recent conversation context.
+- 🔄 **LangGraph Checkpointing:** Explore state management and checkpoint-based memory using `InMemorySaver`.
+- 🌐 **OpenRouter Integration:** Connect to language models through the OpenRouter API.
 
 ## 🛠️ Tech Stack
 
 | Technology | Purpose |
 |---|---|
 | Python | Core programming language |
-| LangChain | LLM integration, prompt templates, and chaining |
-| LangGraph | Agent workflows and checkpoint-based state management |
-| Large Language Models | Itinerary generation and conversational responses |
-| SerpAPI | Google Search integration |
-| Python Environment Variables | Secure API key configuration |
+| LangChain | Prompt templates, LLM integration, and chaining |
+| LangGraph | Agent workflows and checkpointing |
+| OpenRouter | LLM API integration |
+| Nemotron | Language model used through OpenRouter |
+| SerpAPI | External search integration |
+| ConversationBufferWindowMemory | Recent conversational memory |
+| InMemorySaver | In-memory checkpointing for LangGraph |
 
-## 🏗️ How It Works
+## 🏗️ Workflow
 
-The application follows a conversational travel-planning workflow:
+The project explores the following workflow:
 
-1. **User Input:** The user provides a destination and travel preferences.
-2. **Prompt Processing:** Prompt templates structure the request for the language model.
-3. **Sequential Chain Execution:** Connected LLM operations help generate the itinerary.
-4. **Agent-Based Research:** The AI agent can use search tools to retrieve relevant travel information.
-5. **Memory and Context:** Conversation history and checkpointing help preserve relevant context.
-6. **Itinerary Refinement:** The user can ask follow-up questions and refine the generated travel plan.
+1. **User Input:** Receive a destination and travel-related preferences.
+2. **Prompt Processing:** Structure the request using LangChain prompt templates.
+3. **LLM Chaining:** Process the request through connected language-model operations.
+4. **Agent-Based Research:** Allow the agent to use external search tools when needed.
+5. **Conversational Memory:** Retain recent conversation context for follow-up requests.
+6. **LangGraph Checkpointing:** Save agent state during workflow execution using an in-memory checkpointer.
+7. **Itinerary Refinement:** Use conversational interactions to refine travel recommendations.
 
 ## 📂 Project Structure
 
 ```text
 personalized-ai-travel-planner/
 │
-├── main.py                 # Main application entry point
-├── requirements.txt        # Project dependencies
-├── .env                    # API keys (not committed)
-├── .gitignore              # Files excluded from Git
-├── README.md               # Project documentation
-│
-└── notebooks/              # Optional experiments and learning notebooks
+├── proj.ipynb       # Main project notebook
+├── README.md        # Project documentation
+├── requirements.txt # Project dependencies
+├── .gitignore       # Excludes sensitive and unnecessary files
+└── .env.example     # Example environment variable configuration
 ```
 
-*Note: Update this structure to match the actual files in your repository.*
+The notebook uses separate Python files for API key configuration. These files should remain private and must not be uploaded to GitHub.
 
 ## ⚙️ Getting Started
 
@@ -88,16 +75,10 @@ cd personalized-ai-travel-planner
 python -m venv venv
 ```
 
-Activate it:
+Activate it on Windows:
 
-**Windows**
 ```bash
 venv\Scripts\activate
-```
-
-**macOS / Linux**
-```bash
-source venv/bin/activate
 ```
 
 ### 3. Install Dependencies
@@ -108,65 +89,54 @@ pip install -r requirements.txt
 
 ### 4. Configure API Keys
 
-Create a `.env` file in the project root and add the API keys required by your configuration.
+Create a `.env` file in the project directory and configure the API keys required by your implementation.
 
 ```env
-GOOGLE_API_KEY=your_google_api_key
+OPENROUTER_API_KEY=your_openrouter_api_key
 SERPAPI_API_KEY=your_serpapi_api_key
 ```
 
-Use the environment variables that match your actual model and search integrations. Never commit your real API keys to GitHub.
+Install `python-dotenv` if your code uses it to load environment variables. Update the notebook's API key imports to read these variables before running it.
 
-### 5. Run the Project
+**Never upload your actual API keys or private configuration files.**
 
-If your application entry point is `main.py`, run:
+### 5. Run the Notebook
+
+Launch Jupyter Notebook:
 
 ```bash
-python main.py
+jupyter notebook
 ```
 
-Follow the instructions displayed by your application.
+Open `proj.ipynb` and execute the cells in order after configuring your API keys.
 
-## 🔐 Environment Variables
+## 🧠 Key Concepts Explored
 
-| Variable | Description |
-|---|---|
-| `GOOGLE_API_KEY` | API key for Google AI models, if used |
-| `SERPAPI_API_KEY` | API key for SerpAPI search integration |
-
-Only configure the keys needed by your implementation.
-
-## 📚 Key Concepts Explored
-
-This project provided practical experience with:
-
-- **Prompt Engineering:** Designing structured prompts for more useful LLM responses.
-- **LCEL and Chaining:** Connecting prompts, models, and output processing.
+- **Prompt Engineering:** Structuring prompts to guide LLM responses.
+- **LangChain Expression Language:** Connecting language-model components into workflows.
 - **Sequential Chains:** Passing outputs between multiple LLM operations.
-- **Tool Calling:** Allowing an agent to use external search capabilities.
-- **Agentic Workflows:** Exploring how agents select tools and respond to user requests.
-- **Conversational Memory:** Maintaining context across multiple interactions.
-- **LangGraph Checkpointing:** Exploring state persistence in agent workflows.
+- **Tool Calling:** Connecting agents to external search capabilities.
+- **Agentic AI:** Exploring how agents use tools to complete tasks.
+- **Conversational Memory:** Maintaining recent chat context across interactions.
+- **LangGraph State Management:** Exploring checkpointing and stateful agent workflows.
 
 ## 🚀 Future Improvements
 
-Some ideas for extending the project:
-
-- 🌦️ Integrate live weather information for travel destinations.
+- 🌦️ Integrate live weather information.
 - 🏨 Add hotel and accommodation recommendations.
-- 💰 Include estimated travel budgets and expense breakdowns.
+- 💰 Include estimated travel budgets.
 - 📍 Integrate maps and location-based recommendations.
-- 🖥️ Build a polished web interface.
-- 💾 Improve persistent memory and support multiple user sessions.
-- 📅 Add travel duration and day-by-day itinerary customization.
+- 🖥️ Develop a dedicated web interface.
+- 💾 Add persistent checkpoint storage.
+- 📅 Support more detailed day-by-day itinerary customization.
 
-## 🎯 Learning Outcome
+## 🎯 Learning Outcomes
 
-Building this project helped me understand how individual LangChain components can work together to create a more capable AI application.
+This project helped me explore how to combine multiple LangChain components into a practical AI application.
 
-It also gave me an opportunity to explore how **LangGraph can support stateful agent workflows** through checkpointing.
+It also provided hands-on experience with external tool integration, conversational memory, and LangGraph checkpointing.
 
-This is a learning project and an ongoing step in my journey toward **AI Engineering**.
+As a learning project, it represents an important step in my journey toward **AI Engineering and Agentic AI development**.
 
 ## 👨‍💻 Author
 
